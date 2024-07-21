@@ -49,7 +49,6 @@ fn main() {
         ["leetcode", "leeto"]
     ];
 
-
     for sample in samples {
         let haystack = String::from(sample[0]);
         let needle = String::from(sample[1]);
