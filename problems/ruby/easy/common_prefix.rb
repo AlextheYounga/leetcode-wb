@@ -19,8 +19,6 @@
 # 0 <= strs[i].length <= 200
 # strs[i] consists of only lowercase English letters.
 
-
-
 # @param {String[]} strs
 # @return {String}
 def longest_common_prefix(strs)
@@ -32,6 +30,4 @@ samples = [
     ["dog","racecar","car"]
 ]
 
-for sample in samples:
-
-end
+# WIP
