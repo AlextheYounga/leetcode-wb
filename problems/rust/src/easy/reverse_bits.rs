@@ -58,3 +58,16 @@ fn main() {
 }
 
 // To compile: rustc problems/easy/reverse_bits.rs
+
+/*
+
+The best submitted solution lmao
+"looked up the docs, crazy"
+
+impl BestSolution {
+	pub fn reverse_bits(x: u32) -> u32 {
+		x.reverse_bits()
+	}
+}
+	
+*/
