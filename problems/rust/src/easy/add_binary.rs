@@ -97,7 +97,7 @@ fn second_strategy() {
     }
 
     // Panics on the last item because this sum will be higher than the maximum 128 unsigned integer type
-    let samples = [
+    let samples: [[&str; 2]; 4] = [
         ["11", "1"],
         ["1010", "1011"],
         [
