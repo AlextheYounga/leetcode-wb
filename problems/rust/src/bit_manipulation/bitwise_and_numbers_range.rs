@@ -1,6 +1,9 @@
 /*
-Bitwise AND of Numbers Range
+Title: Bitwise AND of Numbers Range
+Link: https://leetcode.com/problems/bitwise-and-of-numbers-range
+Difficulty: Medium
 
+Description:
 Given two integers left and right that represent the range [left, right], return the bitwise AND of all numbers in this range, inclusive.
 
 Example 1:

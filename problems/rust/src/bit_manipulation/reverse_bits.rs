@@ -1,4 +1,9 @@
 /*
+Title: Reverse Bits
+Link: https://leetcode.com/problems/reverse-bits
+Difficulty: Easy
+
+Description:
 Reverse bits of a given 32 bits unsigned integer.
 
 Note:

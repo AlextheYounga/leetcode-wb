@@ -1,6 +1,12 @@
 <?php
 
 /*
+Title: Length of Last Word
+Link: https://leetcode.com/problems/length-of-last-word
+Difficulty: Easy
+
+Description:
+
 Given a string s consisting of words and spaces, return the length of the last word in the string.
 
 A word is a maximal 

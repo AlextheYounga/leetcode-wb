@@ -1,7 +1,11 @@
+# Title: Longest Common Prefix
+# Link: https://leetcode.com/problems/longest-common-prefix
+# Difficulty: Easy
+# 
+# Description:
 # Write a function to find the longest common prefix string amongst an array of strings.
 # 
 # If there is no common prefix, return an empty string "".
-# 
 # 
 # Example 1:
 # Input: strs = ["flower","flow","flight"]

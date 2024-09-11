@@ -1,4 +1,10 @@
-/* Given two binary strings a and b, return their sum as a binary string0.
+/* 
+Title: Add Binary
+Link: https://leetcode.com/problems/add-binary
+Difficulty: Easy
+
+Description:
+Given two binary strings a and b, return their sum as a binary string0.
 
 Example 01:
 Input: a = "11", b = "1"
