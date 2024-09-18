@@ -41,7 +41,7 @@ impl Solution {
     }
 }
 
-fn main() {
+pub fn main() {
     let samples: [i32; 4] = [11, 128, 2147483645, 2147483647];
 
     /*

@@ -37,7 +37,7 @@ impl Solution {
     }
 }
 
-fn main() {
+pub fn main() {
     let samples: [[i32; 2]; 5]  = [
         [5, 7], // => 4
         [0, 0], // => 0

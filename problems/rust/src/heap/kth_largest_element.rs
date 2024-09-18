@@ -35,7 +35,7 @@ impl Solution {
     }
 }
 
-fn main() {
+pub fn main() {
     let samples: [(Vec<i32>, i32); 2] = [
         (vec![3,2,1,5,6,4], 2), // => 5
         (vec![3,2,3,1,2,4,5,5,6], 4), // => 4

@@ -40,7 +40,7 @@ impl Solution {
     }
 }
 
-fn main() {
+pub fn main() {
     let samples: [Vec<i32>; 2] = [
         vec![2,2,3,2], // => 3
         vec![0,1,0,1,0,1,99], // => 99

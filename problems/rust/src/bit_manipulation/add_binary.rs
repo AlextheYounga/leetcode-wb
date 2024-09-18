@@ -20,6 +20,8 @@ a and b consist only of '0' or '1' characters.
 Each string does not contain leading zeros except for the zero itself.
 */
 
+/*
+
 fn first_strategy() {
     struct Solution;
 
@@ -57,6 +59,9 @@ fn first_strategy() {
         println!("Sum Binary String: {}", binary_string);
     }
 }
+	
+*/
+
 
 fn second_strategy() {
     struct Solution;
@@ -124,7 +129,7 @@ fn second_strategy() {
     }
 }
 
-fn main() {
+pub fn main() {
     // first_strategy();
     second_strategy()
 }

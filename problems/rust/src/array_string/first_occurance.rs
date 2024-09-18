@@ -46,7 +46,7 @@ impl Solution {
     }
 }
 
-fn main() {
+pub fn main() {
     let samples = [
         ["sadbutsad", "sad"],
         ["leetcode", "leeto"]
