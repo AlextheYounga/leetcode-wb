@@ -22,49 +22,49 @@ Each string does not contain leading zeros except for the zero itself.
 SEE failed_attempts.md
 */
 
-fn second_strategy() {
-    struct Solution;
 
-    impl Solution {
-        pub fn add_binary(a: String, b: String) -> String {
-            let mut a = a;
-            let mut b = b;
-            let mut result = String::new();
-            let mut carry = 0;
+struct Solution;
 
-            // Ensure both binaries are of equal length
-            // 0000001 is the same as 1, but 1000000 is not the same as 1
-            while a.len() < b.len() {
-                a.insert(0, '0');
-            }
-            while b.len() < a.len() {
-                b.insert(0, '0');
-            }
+impl Solution {
+	pub fn add_binary(a: String, b: String) -> String {
+		let mut a = a;
+		let mut b = b;
+		let mut result = String::new();
+		let mut carry = 0;
 
-            // Iterate over the characters of both strings from right to left
-            for (bit_a, bit_b) in a.chars().rev().zip(b.chars().rev()) {
-                // Convert binary characters to integers and add them along with the carry
-                let sum = bit_a.to_digit(2).unwrap() + bit_b.to_digit(2).unwrap() + carry;
+		// Ensure both binaries are of equal length
+		// 0000001 is the same as 1, but 1000000 is not the same as 1
+		while a.len() < b.len() {
+			a.insert(0, '0');
+		}
+		while b.len() < a.len() {
+			b.insert(0, '0');
+		}
 
-                // Determine the current digit of the result (0 or 1) based on the sum
-                // If sum is even, add '0' to the result; if sum is odd, add '1'
-                let current_digit = if sum % 2 == 0 { '0' } else { '1' };
-                result.push(current_digit);
+		// Iterate over the characters of both strings from right to left
+		for (bit_a, bit_b) in a.chars().rev().zip(b.chars().rev()) {
+			// Convert binary characters to integers and add them along with the carry
+			let sum = bit_a.to_digit(2).unwrap() + bit_b.to_digit(2).unwrap() + carry;
 
-                // Update the carry: it will be 1 if sum is 2 or 3 (since those are the only cases
-                // where the resulting binary digit will carry over)
-                carry = sum / 2;
-            }
+			// Determine the current digit of the result (0 or 1) based on the sum
+			// If sum is even, add '0' to the result; if sum is odd, add '1'
+			let current_digit = if sum % 2 == 0 { '0' } else { '1' };
+			result.push(current_digit);
 
-            // If there's a carry left after the last addition
-            if carry != 0 {
-                result.push('1');
-            }
+			// Update the carry: it will be 1 if sum is 2 or 3 (since those are the only cases
+			// where the resulting binary digit will carry over)
+			carry = sum / 2;
+		}
 
-            // Since we've built the string in reverse
-            return result.chars().rev().collect();
-        }
-    }
+		// If there's a carry left after the last addition
+		if carry != 0 {
+			result.push('1');
+		}
+
+		// Since we've built the string in reverse
+		return result.chars().rev().collect();
+	}
+}
 
 pub fn main() {
     let samples: [[&str; 2]; 4] = [

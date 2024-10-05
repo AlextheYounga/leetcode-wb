@@ -1,7 +1,6 @@
 # Rust Notes
 
 ## Finding unique values using HashSet
-
 ```rust
     pub fn unique_values(nums: Vec<i32>) -> i32 {
 		use std::collections::HashSet;

@@ -57,20 +57,3 @@ pub fn main() {
         println!("Number hamming weight: {}", hamming_weight);
     }
 }
-
-/*
- impl BestSolution {
-     pub fn hammingWeight (n: u32) -> i32 {
-         (0..32).fold(0, |acc, exp| acc + ((n & (1 << exp)) >> exp)) as i32
-     }
- }
-
- Notes:
- In Rust, the .fold method is an iterator function that allows you to accumulate a single result by iteratively applying a closure or function to each element of an iterator. 
- It is a powerful tool for reducing a collection (like a vector, array, or range) to a single value.
-
- Example:
- let numbers = vec![1, 2, 3, 4, 5];
- let sum = numbers.iter().fold(0, |acc, &x| acc + x);
- println!("The sum is: {}", sum); // Outputs: "The sum is: 15"
-*/

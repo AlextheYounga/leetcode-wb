@@ -84,27 +84,3 @@ pub fn main() {
         println!("Output: {}", single_num);
     }
 }
-
-/*
-
-Sort the input array of integers.
-Iterate through the sorted array in steps of 2.
-Check if the current element is not equal to the next element.
-If the condition is met, return the current element as it is the single number.
-If no single number is found after the loop, return 0.
-
-struct BestSolution;
-
-impl BestSolution {
-    pub fn single_number(mut nums: Vec<i32>) -> i32 {
-        nums.sort()
-        for i in (0..nums.len()).step_by(2) {
-            if i == nums.len() - 1 || nums[i] != nums[i + 1] {
-                return nums[i];
-            }
-        
-        0
-    }
-}
- 
-*/
