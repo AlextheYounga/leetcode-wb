@@ -28,6 +28,11 @@
 	- [Integer Break](#integer-break)
 		- [My Answer](#my-answer-9)
 		- [Best Solution](#best-solution-5)
+	- [Game of Life](#game-of-life)
+		- [My Answer](#my-answer-10)
+	- [Rotate Image](#rotate-image)
+		- [My Answer](#my-answer-11)
+		- [Best Solution](#best-solution-6)
 
 
 ## Buy Sell
@@ -401,4 +406,72 @@ def integerBreak(n: int) -> int:
         return (3 ** (n // 3 - 1) * 4)
     else:
         return (3 ** (n // 3) * 2)
+```
+
+## Game of Life
+
+**Question:** According to [Wikipedia's article](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life): "The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970."
+
+The board is made up of an `m x n` grid of cells, where each cell has an initial state: live (represented by a 1) or dead (represented by a 0). Each cell interacts with its [eight neighbors](https://en.wikipedia.org/wiki/Moore_neighborhood) (horizontal, vertical, diagonal) using the following four rules (taken from the above Wikipedia article):
+
+1. Any live cell with fewer than two live neighbors dies as if caused by under-population.
+2. Any live cell with two or three live neighbors lives on to the next generation.
+3. Any live cell with more than three live neighbors dies, as if by over-population.
+4. Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
+  
+The next state is created by applying the above rules simultaneously to every cell in the current state, where births and deaths occur simultaneously. Given the current state of the `m x n` grid board, return the next state.
+
+### My Answer
+```python
+import copy
+
+class Solution(object):
+	def game_of_life(self, board):
+		"""
+		:type board: List[List[int]]
+		:rtype: None Do not return anything, modify board in-place instead.
+		"""
+		grid = copy.deepcopy(board)  
+
+		for row in range(0, len(grid)):
+			for col in range(0, len(grid[row])):
+				rows = range(max(0, row - 1), min(row + 2, len(grid)))
+				cols = range(max(0, col - 1), min(col + 2, len(grid[0])))
+
+				neighbors = [grid[r][c] for r in rows for c in cols] # moore neighborhood
+				cell = grid[row][col]
+				value = sum(neighbors) - cell
+
+				if cell == 1:
+					if (value < 2) or (value > 3):
+						board[row][col] = 0
+				else:
+					if value == 3:
+						board[row][col] = 1
+```
+
+## Rotate Image
+**Question:** You are given an n x n 2D matrix representing an image, rotate the image by 90 degrees (clockwise).You have to rotate the image in-place, which means you have to modify the input 2D matrix directly. DO NOT allocate another 2D matrix and do the rotation.
+
+### My Answer
+```python
+import copy
+
+class Solution(object):
+	def rotate(self, matrix):
+		"""
+		:type matrix: List[List[int]]
+		:rtype: None Do not return anything, modify matrix in-place instead.
+		"""
+		image = copy.deepcopy(matrix)
+		for row in range(0, len(image)):
+			for index, col in enumerate(reversed(range(0, len(image[row])))):
+				matrix[row][index] = image[col][row]
+```
+
+### Best Solution
+```python
+class Solution:
+    def rotate(self, matrix):
+        matrix[:] = map(list, zip(*matrix[::-1]))
 ```
