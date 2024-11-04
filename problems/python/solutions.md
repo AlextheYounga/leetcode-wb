@@ -33,6 +33,18 @@
 	- [Rotate Image](#rotate-image)
 		- [My Answer](#my-answer-11)
 		- [Best Solution](#best-solution-6)
+	- [Maximum Depth of Binary Tree](#maximum-depth-of-binary-tree)
+		- [My Answer](#my-answer-12)
+	- [Max Subarray](#max-subarray)
+		- [My Answer](#my-answer-13)
+	- [Palindrome Number](#palindrome-number)
+		- [My Answer](#my-answer-14)
+		- [Best Answer](#best-answer-1)
+	- [Summary Ranges](#summary-ranges)
+		- [My Answer](#my-answer-15)
+	- [Valid Parenthases](#valid-parenthases)
+		- [My Answer](#my-answer-16)
+		- [Best Solution](#best-solution-7)
 
 
 ## Buy Sell
@@ -474,4 +486,180 @@ class Solution(object):
 class Solution:
     def rotate(self, matrix):
         matrix[:] = map(list, zip(*matrix[::-1]))
+```
+
+## Maximum Depth of Binary Tree
+**Question:** Given the root of a binary tree, return its maximum depth. A binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+
+### My Answer
+```python
+class Solution(object):
+	def maxDepth(self, root):
+		"""
+		:type root: Optional[TreeNode]
+		:rtype: int
+		"""
+		# Null node has 0 depth.
+		if root == None:
+			return 0
+
+		# Get the depth of the left and right subtree 
+		# using recursion.
+		leftDepth = self.maxDepth(root.left)
+		rightDepth = self.maxDepth(root.right)
+
+		# Choose the larger one and add the root to it.
+		if leftDepth > rightDepth:
+			return leftDepth + 1
+		else:
+			return rightDepth + 1
+```
+
+## Max Subarray
+Given an integer array nums, find the subarray with the largest sum, and return its sum.
+
+### My Answer
+```py
+class Solution(object):
+	def maxSubArray(self, nums):
+		"""
+		:type nums: List[int]
+		:rtype: int
+		"""
+		best_sum = []
+		current_sum = 0
+		for x in nums:
+			current_sum = max(x, current_sum + x)
+			best_sum.append(current_sum)
+		return max(best_sum)
+```
+
+## Palindrome Number
+Given an integer x, return true if x is a palindrome, and false otherwise.
+
+### My Answer
+```python
+class Solution(object):
+    def isPalindrome(self, x):
+        """
+        :type x: int
+        :rtype: bool
+        """
+        if x < 0: return False
+        return str(x)[::-1] == str(x)
+```
+
+### Best Answer
+**Solving Steps:**
+1. If x is negative, return false.
+2. Initialize revertedNumber to 0.
+3. Loop until x is less than revertedNumber:
+	- In each iteration, append the last digit of x to revertedNumber.
+	- Remove the last digit from x.
+4. After the loop, check if x is equal to revertedNumber or x is equal to revertedNumber divided by 10 (to handle the odd number of digits case).
+
+```python
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        if x < 0 or (x % 10 == 0 and x != 0): return False
+        revertedNumber = 0
+        while x > revertedNumber:
+            revertedNumber = revertedNumber * 10 + x % 10
+            x //= 10
+        return x == revertedNumber or x == revertedNumber // 10
+```
+
+## Summary Ranges
+You are given a sorted unique integer array nums.
+A range `[a,b]` is the set of all integers from a to b (inclusive).
+Return the smallest sorted list of ranges that cover all the numbers in the array exactly. That is, each element of nums is covered by exactly one of the ranges, and there is no integer x such that x is in one of the ranges but not in nums.
+Each range `[a,b]` in the list should be output as:
+
+### My Answer
+```py
+class Solution(object):
+	def summaryRanges(self, nums):
+		"""
+		:type nums: List[int]
+		:rtype: List[str]
+		"""
+		nums.sort()
+		summary = []
+		last_range = None
+		for i, n in enumerate(nums):
+			next_index = min(len(nums)-1, i + 1)
+			# Check to see if the next item is contiguous
+			continuity = nums[next_index] == n + 1
+			if continuity:
+				# If contiguous, ensure last_range exists and continue
+				if not last_range: 
+					last_range = str(n) + '->'
+			else:
+				if last_range: 
+					# If no continuity, but has previous range, let's complete the range
+					last_range = f"{last_range}{str(n)}"
+					summary.append(last_range)
+					last_range = None
+				else:
+					# If no continuity and no range, let's append the str number
+					summary.append(str(n))
+		
+		return summary
+```
+
+## Valid Parenthases
+Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.
+
+An input string is valid if:
+- Open brackets must be closed by the same type of brackets.
+- Open brackets must be closed in the correct order.
+- Every close bracket has a corresponding open bracket of the same type.
+
+### My Answer
+```python
+class Solution(object):
+	def isValid(self, s):
+		"""
+		:type s: str
+		:rtype: bool
+		"""
+		open = ['(', '{', '[']
+		close = [')', '}',  ']']
+		opened = []
+		for char in s:
+			if char in open:
+				opened.append(char)
+			if char in close:
+				open_char = open[close.index(char)]
+				# If not one opened
+				if open_char not in opened:
+					return False
+				if opened[-1] != open_char:
+					# Not in the correct order
+					return False
+				# Closing
+				opened.pop()
+
+		return len(opened) == 0
+```
+
+### Best Solution
+This is basically the same solution as mine except it uses string searching instead of an array search and doesn't have to use the index() function.
+
+```python
+class Solution(object):
+    def isValid(self, s):
+        stack = [] # create an empty stack to store opening brackets
+        for c in s: # loop through each character in the string
+            if c in '([{': # if the character is an opening bracket
+                stack.append(c) # push it onto the stack
+            else: # if the character is a closing bracket
+                if not stack or \
+                    (c == ')' and stack[-1] != '(') or \
+                    (c == '}' and stack[-1] != '{') or \
+                    (c == ']' and stack[-1] != '['):
+                    return False # the string is not valid, so return false
+                stack.pop() # otherwise, pop the opening bracket from the stack
+        return not stack # if the stack is empty, all opening brackets have been matched with their corresponding closing brackets,
+                         # so the string is valid, otherwise, there are unmatched opening brackets, so return false
 ```
