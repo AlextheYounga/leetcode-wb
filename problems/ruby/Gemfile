@@ -3,4 +3,4 @@
 source "https://rubygems.org"
 
 # gem "rails"
-gem "solargraph"
+gem 'solargraph', group: :development
