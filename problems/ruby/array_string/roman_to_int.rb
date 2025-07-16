@@ -1,3 +1,5 @@
+require 'pry'
+
 # Title: Roman to Integer
 # Link: https://leetcode.com/problems/roman-to-integer/
 # Difficulty: Easy
@@ -46,6 +48,53 @@
 # @param {String} s
 # @return {Integer}
 
+# Symbol       Value
+# I             1
+# V             5
+# X             10
+# L             50
+# C             100
+# D             500
+# M             1000
+
 def roman_to_int(s)
-  
+  roman_map = {
+	"I" => 1,
+	"V" => 5,
+	"X" => 10,
+	"L" => 50,
+	"C" => 100,
+	"D" => 500,
+	"M" => 1000,
+  }
+
+  value = 0
+  s.chars.each_with_index do |numeral, i|
+	number = roman_map[numeral]
+	next_number = (s.chars.count - 1) > i ? roman_map[s.chars[i + 1]] : 0
+
+	if next_number > number
+		value -= number
+	else
+		value += number
+	end
+  end
+
+  return value
 end
+
+def main()
+    samples = [
+        'III',
+        'LVIII',
+        'MCMXCIV'
+    ]
+
+    for sample in samples do
+        number = roman_to_int(sample)
+        puts "#{sample} => #{number}"
+    end
+end
+
+main()
+
